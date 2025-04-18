@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SecureVault</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <!-- Page Wrapper -->
+  <div class="main-wrapper">
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="index.html" class="logo"><i class="fas fa-lock"></i> SecureVault</a>
+      <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+      <span class="nav-item" onclick="showLoginForm()"><i class="fas fa-sign-in-alt"></i> Sign In</span>
+      <span class="nav-item" onclick="showSecureSafe()"><i class="fas fa-shield-alt"></i> Secure Safe</span>
+      <span class="nav-item" onclick="showAbout()"><i class="fas fa-info-circle"></i> About</span>
+      <span class="nav-item" id="admin-link" onclick="showAdminLogin()"><i class="fas fa-user-shield"></i> Admin
+        Login</span>
+      <span class="nav-item" id="user-profile" style="display: none;"></span>
+    </nav>
+
+    <main class="container">
+
+      <!-- Create Account Section -->
+      <section id="create-account-section">
+        <h2>Create Account</h2>
+        <input type="password" id="create-password" placeholder="Enter Password" />
+        <input type="text" id="create-name" placeholder="Enter Name" />
+        <input type="number" id="create-age" placeholder="Enter Age" />
+        <button onclick="createAccount()">Create</button>
+      </section>
+
+      <!-- Admin Login Section -->
+      <section id="admin-login-section" hidden>
+        <h2>Admin Login</h2>
+        <input type="text" id="admin-username" placeholder="Admin Username" />
+        <input type="password" id="admin-password" placeholder="Admin Password" />
+        <div class="checkbox-group">
+          <input type="checkbox" id="admin-remember-me" />
+          <label for="admin-remember-me">Remember Me</label>
+        </div>
+
+        <button onclick="adminLogin()">Login</button>
+      </section>
+
+      <!-- Admin Dashboard -->
+      <section id="admin-profile" hidden>
+        <h2>Welcome Admin</h2>
+        <button onclick="logoutAdmin()">🚪 Logout</button>
+        <button onclick="showSearchSection()">🔍 Find User by ID</button>
+        <button onclick="viewAllFiles()">📂 See User Data</button>
+        <button onclick="viewDownloadLogs()">📋 View Download Logs</button>
+        <button onclick="filterLogs()">🔍 Filter Logs</button>
+        <button onclick="exportLogs()">📄 Export Logs</button>
+
+        <button onclick="resetAllData()" style="background-color:#ff4d4d;">🧨 Reset All Data</button>
+        <div id="admin-output" class="output"></div>
+      </section>
+
+      <!-- User Login Section -->
+      <section id="user-login-section" hidden>
+        <h2>User Login</h2>
+        <input type="text" id="login-id" placeholder="Enter User ID (e.g. 001)" />
+        <input type="password" id="login-password" placeholder="Enter Password" />
+        <div class="checkbox-group">
+          <input type="checkbox" id="remember-me" />
+          <label for="remember-me">Remember Me</label>
+        </div>
+
+        <button onclick="userLogin()">Login</button>
+      </section>
+
+      <!-- User Dashboard -->
+      <section id="user-dashboard" hidden>
+        <h3>Welcome, <span id="logged-in-user-name"></span></h3>
+        <p><strong>User ID:</strong> <span id="logged-in-user-id"></span></p>
+        <p><strong>Age:</strong> <span id="logged-in-user-age"></span></p>
+        <button onclick="logoutUser()">Logout</button>
+
+        <h3>Upload Confidential File</h3>
+        <input type="file" id="file-upload" />
+        <input type="text" id="file-password" maxlength="4" placeholder="4-digit Password" />
+        <button onclick="uploadFile()">Upload</button>
+
+        <div id="upload-success" class="popup" hidden>
+          <img src="https://media.giphy.com/media/111ebonMs90YLu/giphy.gif" alt="Success" />
+          <p>File Uploaded Successfully</p>
+        </div>
+
+        <h3>Manage</h3>
+        <button onclick="downloadFile()">Download File</button>
+        <button onclick="editUser()">Edit Info</button>
+        <button onclick="deleteUser()">Delete Account</button>
+
+        <div id="file-status" class="output"></div>
+      </section>
+
+      <!-- Admin Search Section -->
+      <section id="search-section" hidden>
+        <h3>Search User by ID</h3>
+        <input type="text" id="search-id" placeholder="Enter User ID" />
+        <button onclick="searchUser()">Search</button>
+        <div id="search-result" class="output"></div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about-section" hidden>
+        <h2>About SecureVault</h2>
+        <p>SecureVault is a confidential digital safe for your private files and data. Users are assigned secure IDs and
+          can upload password-protected files. Admins can monitor file activity.</p>
+        <p><strong>Contact Us:</strong> support@securevault.com</p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 <strong>SecureVault</strong>. All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
